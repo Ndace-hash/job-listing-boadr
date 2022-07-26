@@ -1,6 +1,5 @@
 const jobsBoard = document.querySelector("#jobs");
 const filtersContainer = document.querySelector("#filters");
-
 const removeFilterButtons = document.querySelectorAll(".remove-filter");
 const clearFilters = document.querySelector("#clear-filters");
 
@@ -31,17 +30,23 @@ const createJobCards = (jobs) => {
 
     const jobDesc = document.createElement("div");
     jobDesc.classList.add("job-desc");
+
     const company = document.createElement("div");
     company.classList.add("company");
+
     const companyDetails = document.createElement("div");
     companyDetails.classList.add("company-details");
+
     const companyName = document.createElement("h2");
     companyName.classList.add("company-name");
     companyName.innerText = job.company;
+
     const tags = document.createElement("div");
     tags.classList.add("tags");
-    jobDesc.append(companyName);
-    jobDesc.append(tags);
+
+    companyDetails.append(companyName);
+    companyDetails.append(tags);
+    company.append(companyDetails);
     jobDesc.append(company);
 
     jobCard.append(jobDesc);
@@ -71,40 +76,20 @@ const createJobCards = (jobs) => {
 
     const tools = document.createElement("div");
     tools.classList.add("tools");
+
+    job.tools.forEach((t) => {
+      const tool = document.createElement("span");
+      tool.textContent = t;
+      tools.append(tool);
+    });
+
+    job.languages.forEach((l) => {
+      const language = document.createElement("span");
+      language.textContent = l;
+      tools.append(language);
+    });
     jobDesc.append(tools);
 
-    for (let i = 0; i < job.tools.length; i++) {
-      const tool = document.createElement("span");
-      tool.innertext = job.tools[i];
-      tools.append(tool);
-    }
-    //     `<article class="job-card ${job.featured ? "featured" : ""}">
-    //     <div class="company-logo">
-    //       <img src="${job.logo}" alt="${job.company}" />
-    //     </div>
-    //     <div class="job-desc">
-    //       <div class="company">
-    //         <div class="company-details">
-    //           <h2 class="company-name">Photosnap</h2>
-    //           <div class="tags">
-    //             <span class="tag">New!</span>
-    //             <span class="tag">Featured</span>
-    //           </div>
-    //         </div>
-    //         <h3 class="position">Senior Frontend Developer</h3>
-    //         <p class="details">
-    //           1d ago &centerdot; Full Time &centerdot; USA only
-    //         </p>
-    //       </div>
-    //       <div class="tools">
-    //         <span>Frontend</span>
-    //         <span>Senior</span>
-    //         <span>HTML</span>
-    //         <span>CSS</span>
-    //         <span>JavaScript</span>
-    //       </div>
-    //     </div>
-    //   </article>`;
     jobsBoard.append(jobCard);
   });
 };
