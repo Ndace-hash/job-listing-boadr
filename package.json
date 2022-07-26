@@ -1,0 +1,9 @@
+{
+  "name": "static-job-listings-master",
+  "version": "0.0.0",
+  "description": "A static job listing webpage with filtering solution.",
+  "main": "index.js",
+  "author": "Zaccheaus Yisa <zaccheausyisa00@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
