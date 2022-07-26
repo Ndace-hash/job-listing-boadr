@@ -1,0 +1,134 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --cyan: hsl(180, 29%, 50%);
+  --light-cyan-bg: hsl(180, 52%, 96%);
+  --light-cyan-filter: hsl(180, 31%, 95%);
+  --dark-cyan: hsl(180, 8%, 52%);
+  --x-dark-cyan: hsl(180, 14%, 20%);
+  --white: #ffffff;
+
+  --mobile-width: 375px;
+  --desktop-width: 1440px;
+
+  font-size: 15px;
+  font-family: "League Spartan", sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--light-cyan-bg);
+}
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+.header {
+  background-color: var(--cyan);
+  background-image: url(./images/bg-header-mobile.svg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 10rem;
+}
+
+.jobs {
+  padding: 2rem 2rem;
+}
+
+.jobs .job-card {
+  background-color: var(--white);
+  border-radius: 7px;
+  position: relative;
+  min-height: fit-content;
+  margin: 3rem auto;
+}
+
+.jobs .job-card .company-logo {
+  width: 3rem;
+  transform: translateY(-50%) translateX(50%);
+  overflow: hidden;
+  margin: 0;
+  position: absolute;
+}
+.job-card .job-desc {
+  padding: 0 1.3rem;
+  padding-top: 2rem;
+}
+
+.company-logo img {
+  width: 100%;
+}
+
+.company {
+  border-bottom: 1px solid var(--dark-cyan);
+}
+.company-details {
+  margin-top: 0;
+  margin-bottom: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+}
+.company-details h2 {
+  color: var(--cyan);
+  font-size: 0.95rem;
+  line-height: 0.1;
+  font-weight: 700;
+}
+.company-details .tags span {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin: 0 0.2rem;
+}
+.company-details .tags span:nth-child(1) {
+  background-color: var(--cyan);
+}
+.company-details .tags span:nth-child(2) {
+  background-color: var(--x-dark-cyan);
+}
+.job-card h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--x-dark-cyan);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.details {
+  color: var(--dark-cyan);
+  margin-bottom: 1rem;
+}
+
+.tools {
+  padding: 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tools span {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--cyan);
+  background-color: var(--light-cyan-bg);
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+}
+
+.job-card.featured {
+  border-left: 7px solid var(--cyan);
+  box-shadow: 0 3px 10px 0 var(--dark-cyan);
+}
