@@ -12,6 +12,9 @@
   --x-dark-cyan: hsl(180, 14%, 20%);
   --white: #ffffff;
 
+  --box-shadow: 0 0 15px 0 var(--dark-cyan);
+  --transition: 300ms ease-in;
+
   --mobile-width: 375px;
   --desktop-width: 1440px;
 
@@ -38,10 +41,85 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   height: 10rem;
+  position: relative;
+}
+
+.header .filters-wrapper {
+  background-color: var(--white);
+
+  width: 80%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 7px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .filters-wrapper .filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header .filters-wrapper .filter {
+  padding: 0;
+  font-size: 1rem;
+  background-color: var(--light-cyan-bg);
+  color: var(--cyan);
+  font-weight: 700;
+  display: flex;
+  column-gap: 0.5rem;
+  overflow: hidden;
+  border-radius: 4px;
+  width: max-content;
+}
+
+.header .filters-wrapper .filter .filter-name {
+  padding: 0.4rem 0.3rem;
+}
+
+.header .filters-wrapper .filter .remove-filter {
+  color: var(--white);
+  background-color: var(--cyan);
+  border: none;
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.header .filters-wrapper .filter .remove-filter:is(:hover, :focus) {
+  cursor: pointer;
+  background-color: var(--x-dark-cyan);
+  transition: var(--transition);
+}
+
+#clear-filters {
+  background-color: transparent;
+  color: var(--dark-cyan);
+  text-transform: capitalize;
+  font-weight: 700;
+  border: none;
+}
+#clear-filters:is(:hover, :focus) {
+  cursor: pointer;
+  color: var(--cyan);
+  transition: var(--transition);
 }
 
 .jobs {
-  padding: 2rem 2rem;
+  padding: 2rem;
+  max-width: 1050px;
+  margin: 0 auto;
 }
 
 .jobs .job-card {
@@ -50,6 +128,7 @@ body {
   position: relative;
   min-height: fit-content;
   margin: 3rem auto;
+  box-shadow: var(--box-shadow);
 }
 
 .jobs .job-card .company-logo {
@@ -60,8 +139,9 @@ body {
   position: absolute;
 }
 .job-card .job-desc {
-  padding: 0 1.3rem;
+  padding: 0 0.8rem;
   padding-top: 2rem;
+  width: 100%;
 }
 
 .company-logo img {
@@ -106,6 +186,11 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.job-card h3:is(:hover, :focus) {
+  color: var(--cyan);
+  transition: var(--transition);
+  cursor: pointer;
+}
 
 .details {
   color: var(--dark-cyan);
@@ -127,8 +212,58 @@ body {
   padding: 0.5rem 0.8rem;
   border-radius: 4px;
 }
+.tools span:is(:hover, :focus) {
+  background-color: var(--cyan);
+  color: var(--white);
+  cursor: pointer;
+  transition: 500ms ease-in;
+}
 
 .job-card.featured {
   border-left: 7px solid var(--cyan);
-  box-shadow: 0 3px 10px 0 var(--dark-cyan);
+}
+
+@media screen and (min-width: 850px) {
+  .header {
+    background-image: url(./images/bg-header-desktop.svg);
+    height: 10rem;
+  }
+
+  .jobs .job-card {
+    display: flex;
+    align-items: center;
+    margin: 2rem auto;
+  }
+
+  .job-card .job-desc {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .company {
+    border-bottom: none;
+  }
+
+  .job-card h3 {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 0.6;
+  }
+
+  .details {
+    color: var(--dark-cyan);
+    margin-top: 0.5rem;
+    line-height: 0.7;
+  }
+
+  .jobs .job-card .company-logo {
+    width: 5rem;
+    transform: translateY(0) translateX(0);
+    overflow: hidden;
+    margin: 1.3rem;
+    margin-right: 0rem;
+    position: static;
+  }
 }
