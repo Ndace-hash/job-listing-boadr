@@ -62,7 +62,7 @@ body {
   align-items: center;
 }
 
-.header .filters-wrapper .filters {
+.header .filters-wrapper #filters {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -116,13 +116,13 @@ body {
   transition: var(--transition);
 }
 
-.jobs {
+#jobs {
   padding: 2rem;
   max-width: 1050px;
   margin: 0 auto;
 }
 
-.jobs .job-card {
+#jobs .job-card {
   background-color: var(--white);
   border-radius: 7px;
   position: relative;
@@ -131,7 +131,7 @@ body {
   box-shadow: var(--box-shadow);
 }
 
-.jobs .job-card .company-logo {
+#jobs .job-card .company-logo {
   width: 3rem;
   transform: translateY(-50%) translateX(50%);
   overflow: hidden;
