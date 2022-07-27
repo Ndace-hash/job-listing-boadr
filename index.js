@@ -1,13 +1,12 @@
 const jobsBoard = document.querySelector("#jobs");
+const filterWrapper = document.querySelector(".filters-wrapper");
 const filtersContainer = document.querySelector("#filters");
-const removeFilterButtons = document.querySelectorAll(".remove-filter");
-const clearFilters = document.querySelector("#clear-filters");
+let filters = [];
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const jobs = await getJobsData();
-  createJobCards(jobs);
-  console.log(jobs);
-});
+let jobs;
+if (filters.length == 0) {
+  filterWrapper.style.display = "none";
+}
 
 const getJobsData = async () => {
   const res = await fetch("./data.json");
@@ -16,6 +15,7 @@ const getJobsData = async () => {
 };
 
 const createJobCards = (jobs) => {
+  jobsBoard.innerHTML = null;
   jobs.forEach((job) => {
     const jobCard = document.createElement("article");
     jobCard.setAttribute("class", `job-card ${job.featured ? "featured" : ""}`);
@@ -77,14 +77,26 @@ const createJobCards = (jobs) => {
     const tools = document.createElement("div");
     tools.classList.add("tools");
 
+    const role = document.createElement("span");
+    role.classList.add("tool");
+    role.textContent = job.role;
+    tools.append(role);
+
+    const level = document.createElement("span");
+    level.classList.add("tool");
+    level.textContent = job.level;
+    tools.append(level);
+
     job.tools.forEach((t) => {
       const tool = document.createElement("span");
+      tool.classList.add("tool");
       tool.textContent = t;
       tools.append(tool);
     });
 
     job.languages.forEach((l) => {
       const language = document.createElement("span");
+      language.classList.add("tool");
       language.textContent = l;
       tools.append(language);
     });
@@ -93,3 +105,81 @@ const createJobCards = (jobs) => {
     jobsBoard.append(jobCard);
   });
 };
+
+const filterJobs = async () => {
+  let filteredJobs = jobs.filter((job) => {
+    const jobRequirement = [
+      job.level,
+      job.role,
+      ...job.languages,
+      ...job.tools,
+    ];
+
+    if (filters.every((val) => jobRequirement.includes(val))) {
+      return job;
+    }
+  });
+  createJobCards(filteredJobs);
+};
+
+const createFilter = async (target) => {
+  if (!filters.includes(target.innerText)) {
+    filters.push(target.innerText);
+
+    const filter = document.createElement("div");
+    filter.classList.add("filter");
+    const filterName = document.createElement("span");
+    filterName.classList.add("filter-name");
+    filterName.innerText = target.innerText;
+    const removeFilter = document.createElement("button");
+    removeFilter.classList.add("remove-filter");
+    removeFilter.innerText = "x";
+    filter.append(filterName);
+    filter.append(removeFilter);
+    filtersContainer.append(filter);
+
+    filterWrapper.style.display = "flex";
+  }
+  filterJobs();
+};
+
+const clearFilters = async () => {
+  filters = [];
+  filterWrapper.style.display = "none";
+  filtersContainer.innerHTML = null;
+  createJobCards(jobs);
+};
+
+async function loadContent() {
+  jobs = await getJobsData();
+  createJobCards(jobs);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadContent();
+});
+
+window.addEventListener("click", (event) => {
+  const target = event.target;
+
+  // add a new filter
+  if (target.classList.contains("tool")) {
+    createFilter(target);
+  }
+
+  // remove an existing filter
+  if (target.classList.contains("remove-filter")) {
+    filtersContainer.removeChild(target.parentElement);
+    filters = filters.filter(
+      (filterToRemove) =>
+        filterToRemove !== target.parentElement.firstChild.innerText
+    );
+    filterJobs();
+    if (!filters.length) filterWrapper.style.display = "none";
+  }
+
+  // clear all existing filters
+  if (target.id == "clear-filters") {
+    clearFilters();
+  }
+});

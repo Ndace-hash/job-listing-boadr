@@ -1,6 +1,6 @@
 {
   "name": "static-job-listings-master",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A static job listing webpage with filtering solution.",
   "main": "index.js",
   "author": "Zaccheaus Yisa <zaccheausyisa00@gmail.com>",

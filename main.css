@@ -229,7 +229,7 @@ body {
     height: 10rem;
   }
 
-  .jobs .job-card {
+  #jobs .job-card {
     display: flex;
     align-items: center;
     margin: 2rem auto;
@@ -258,7 +258,7 @@ body {
     line-height: 0.7;
   }
 
-  .jobs .job-card .company-logo {
+  #jobs .job-card .company-logo {
     width: 5rem;
     transform: translateY(0) translateX(0);
     overflow: hidden;
